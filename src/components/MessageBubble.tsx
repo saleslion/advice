@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { ChatMessage } from '../types'; // Adjusted path
 import { UserIcon, BotIcon, SearchIcon, LinkIcon } from './IconComponents'; // Adjusted path
@@ -27,6 +28,8 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({ message }) => {
     let html = text;
 
     // PRODUCT_LINK[handle|Title]
+    // Regex: PRODUCT_LINK\[([^|]+)\|([^\]]+)\]
+    // Matches: PRODUCT_LINK[product-handle|Product Title Text]
     html = html.replace(/PRODUCT_LINK\[([^|]+)\|([^\]]+)\]/g, (match, handle, title) => {
         const storeDomain = (import.meta.env.VITE_SHOPIFY_STORE_DOMAIN || "hifisti.myshopify.com").replace(/^https:\/\/|^\/\//, '');
         const productUrl = `https://${storeDomain}/products/${handle}`;

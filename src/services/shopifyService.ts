@@ -1,4 +1,3 @@
-
 import { ShopifyProduct } from '../types'; // Adjusted path
 import { SHOPIFY_API_VERSION } from '../constants'; // Adjusted path
 
@@ -19,7 +18,6 @@ export const fetchShopifyProducts = async (count: number = 20): Promise<ShopifyP
   }
 
   const storefrontEndpoint = `https://${storeDomain}/api/${SHOPIFY_API_VERSION}/graphql.json`;
-  // Corrected template literal: remove leading '\' from backticks
   const productsQuery = `
   query GetProducts($first: Int!) {
     products(first: $first, sortKey: TITLE, reverse: false) {
@@ -110,20 +108,19 @@ export const generateProductCatalogOverview = (products: ShopifyProduct[], maxLe
   }
 
   // Use actual newline '\n' for consistency with SYSTEM_PROMPT_TEMPLATE
-  let overview = "Our Hifiisti Product Catalog Overview (highlights):\n"; 
+  let overview = "Our Hifiisti Product Catalog Overview (highlights):\\n"; 
   const productsToDisplay = products.slice(0, maxLength);
 
   overview += productsToDisplay.map(p => {
     const price = p.variants?.nodes?.[0]?.price?.amount || p.priceRange?.minVariantPrice?.amount || 'N/A';
     const currency = p.variants?.nodes?.[0]?.price?.currencyCode || p.priceRange?.minVariantPrice?.currencyCode || '';
     const shortDesc = p.description ? p.description.substring(0, 70) + (p.description.length > 70 ? '...' : '') : 'No description available.';
-    // Corrected template literal: remove leading '\' from backtick
-    return `- ${p.title} (Handle: ${p.handle}, Type: ${p.productType || 'Uncategorized'}): ${shortDesc} Price: ${price} ${currency}. Vendor: ${p.vendor}. Tags: ${p.tags.slice(0,3).join(', ')}.`;
-  }).join('\n'); // Use actual newline '\n' for joining
+    return \`- \${p.title} (Handle: \${p.handle}, Type: \${p.productType || 'Uncategorized'}): \${shortDesc} Price: \${price} \${currency}. Vendor: \${p.vendor}. Tags: \${p.tags.slice(0,3).join(', ')}.\`;
+  }).join('\\n'); // Use actual newline '\n' for joining
   
   if (products.length > maxLength) {
-    // Corrected template literal: remove leading '\', use actual newline '\n'
-    overview += `\n...and ${products.length - maxLength} more products. Ask me about specific types or brands!`;
+    // Use actual newline '\n'
+    overview += \`\\n...and \${products.length - maxLength} more products. Ask me about specific types or brands!\`;
   }
   return overview;
 };

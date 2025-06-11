@@ -106,9 +106,9 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ apiKeyAvailable }) => {
       
       let botWelcomeMessage = INITIAL_BOT_MESSAGE.replace("Please give me a moment... Once I'm ready, I", "I'm ready and");
       if (shopifyError && shopifyError !== "Gemini API Key missing.") { 
-        botWelcomeMessage += `\\n\\nNote: ${shopifyError}`;
+        botWelcomeMessage += `\n\nNote: ${shopifyError}`;
       } else if (shopifyConfigIsMissingOrPlaceholder) {
-         botWelcomeMessage += `\\n\\nNote: Shopify connection not fully configured. Product-specific advice may be limited.`
+         botWelcomeMessage += `\n\nNote: Shopify connection not fully configured. Product-specific advice may be limited.`
       }
 
       setMessages([{ 
@@ -243,7 +243,7 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ apiKeyAvailable }) => {
       <div className="flex flex-col items-center justify-center h-full text-center p-4">
         <LoadingSpinner size="lg" />
         <p className="mt-4 text-slate-300">{initializationMessage}</p>
-        {isShopifyLoading && <p className="text-xs text-slate-400">Fetching products from ${getShopifyStoreDomain()}...</p>}
+        {isShopifyLoading && <p className="text-xs text-slate-400">{`Fetching products from ${getShopifyStoreDomain()}...`}</p>}
         {!isShopifyLoading && currentSystemInstruction === null && !shopifyError && <p className="text-xs text-slate-400">Preparing AI assistant...</p>}
          {shopifyConfigIsMissingOrPlaceholder && !isShopifyLoading && (
             <p className="text-amber-400 text-sm mt-2">Shopify not fully configured. Product features limited.</p>
