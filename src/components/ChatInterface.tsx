@@ -1,4 +1,5 @@
 
+
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { GoogleGenAI, Chat, GenerateContentResponse, GroundingMetadata } from '@google/genai';
 import { ChatMessage } from '../types'; // Adjusted path assuming types.ts is in src/
@@ -57,7 +58,7 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ apiKeyAvailable }) => {
         return;
       }
 
-      setInitializationMessage(`Loading product catalog from ${getShopifyStoreDomain()}...`); // getShopifyStoreDomain uses import.meta.env
+      setInitializationMessage(`Loading product catalog from ${getShopifyStoreDomain()}...`); 
       try {
         const products = await fetchShopifyProducts(25);
         const overview = generateProductCatalogOverview(products);

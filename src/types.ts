@@ -1,4 +1,5 @@
 
+
 export interface ShopifyProductImage {
   url: string;
   altText?: string;
