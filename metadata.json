@@ -1,0 +1,5 @@
+{
+  "name": "Shopify AI Product Recommender",
+  "description": "An AI-powered chat application that provides product recommendations from a Shopify site based on visitor queries, leveraging information from product descriptions and articles.",
+  "requestFramePermissions": []
+}
