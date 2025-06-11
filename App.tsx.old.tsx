@@ -1,11 +1,11 @@
 
-import React from 'react';
+import React, 'react';
 import ChatInterface from './components/ChatInterface';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
 const App: React.FC = () => {
-  const apiKey = import.meta.env.VITE_API_KEY;
+  const apiKey = process.env.API_KEY;
 
   return (
     <div className="flex flex-col h-screen bg-gradient-to-br from-slate-900 to-slate-800 text-white selection:bg-primary/70 selection:text-white">
@@ -18,7 +18,7 @@ const App: React.FC = () => {
               The Gemini API key is not configured.
             </p>
             <p className="text-sm mt-2">
-              Please set the <code className="bg-red-800 px-1 rounded">VITE_API_KEY</code> environment variable in your deployment settings.
+              Please set the <code className="bg-red-800 px-1 rounded">API_KEY</code> environment variable.
             </p>
           </div>
         )}

@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { GoogleGenAI, Chat, GenerateContentResponse, GroundingMetadata } from '@google/genai';
 import { ChatMessage } from '../types'; // Adjusted path assuming types.ts is in src/
@@ -242,7 +243,7 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ apiKeyAvailable }) => {
       <div className="flex flex-col items-center justify-center h-full text-center p-4">
         <LoadingSpinner size="lg" />
         <p className="mt-4 text-slate-300">{initializationMessage}</p>
-        {isShopifyLoading && <p className="text-xs text-slate-400">Fetching products from {getShopifyStoreDomain()}...</p>}
+        {isShopifyLoading && <p className="text-xs text-slate-400">Fetching products from ${getShopifyStoreDomain()}...</p>}
         {!isShopifyLoading && currentSystemInstruction === null && !shopifyError && <p className="text-xs text-slate-400">Preparing AI assistant...</p>}
          {shopifyConfigIsMissingOrPlaceholder && !isShopifyLoading && (
             <p className="text-amber-400 text-sm mt-2">Shopify not fully configured. Product features limited.</p>

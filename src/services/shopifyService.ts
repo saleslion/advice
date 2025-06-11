@@ -1,3 +1,4 @@
+
 import { ShopifyProduct } from '../types'; // Adjusted path
 import { SHOPIFY_API_VERSION } from '../constants'; // Adjusted path
 
