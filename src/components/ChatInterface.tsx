@@ -25,7 +25,8 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ apiKeyAvailable }) => {
   const [currentSystemInstruction, setCurrentSystemInstruction] = useState<string | null>(null);
   const [initializationMessage, setInitializationMessage] = useState("Initializing AudioGuide...");
 
-  const shopifyConfigIsMissingOrPlaceholder = areShopifyCredentialsPlaceholders(); // This uses import.meta.env internally
+  // shopifyConfigIsMissingOrPlaceholder uses import.meta.env internally via shopifyService
+  const shopifyConfigIsMissingOrPlaceholder = areShopifyCredentialsPlaceholders();
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -56,7 +57,7 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ apiKeyAvailable }) => {
         return;
       }
 
-      setInitializationMessage(`Loading product catalog from ${getShopifyStoreDomain()}...`);
+      setInitializationMessage(`Loading product catalog from ${getShopifyStoreDomain()}...`); // getShopifyStoreDomain uses import.meta.env
       try {
         const products = await fetchShopifyProducts(25);
         const overview = generateProductCatalogOverview(products);
@@ -89,7 +90,6 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ apiKeyAvailable }) => {
     setInitializationMessage("Connecting to AI assistant...");
     setIsLoading(true); 
     try {
-      // Vite replaces import.meta.env.VITE_API_KEY with the actual value at build time.
       const geminiApiKey = import.meta.env.VITE_API_KEY; 
       if (!geminiApiKey) throw new Error("Gemini API_KEY (VITE_API_KEY) environment variable not found for SDK initialization.");
 
